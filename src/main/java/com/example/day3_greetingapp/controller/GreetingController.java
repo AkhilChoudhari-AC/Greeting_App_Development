@@ -2,7 +2,7 @@ package com.example.day3_greetingapp.controller;
 
 import com.example.day3_greetingapp.model.Greeting;
 import com.example.day3_greetingapp.service.GreetingService;
-import com.example.day3_greetingapp.service.User;
+import com.example.day3_greetingapp.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -15,7 +15,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 public class GreetingController {
 
 //   It is final, it will not change # "hello"
-    private static final String template = "Hello %s!";
+    public static final String template = "Hello %s!";
 
     //Automatically creating the counting
     private static AtomicInteger counter = new AtomicInteger();
@@ -52,6 +52,11 @@ public class GreetingController {
     @PostMapping("/post")
     public ResponseEntity<String> getGreeting(@RequestBody User user){
         return new ResponseEntity<String>(greetingService.postMessage(user.getfName(),user.getlName()),HttpStatus.OK);
+    }
+   //UC4
+    @PostMapping("/saveGreeting")
+    public ResponseEntity<Greeting> saveGreeting(@RequestBody Greeting greeting){
+        return new ResponseEntity<Greeting>(greetingService.saveMessage(greeting),HttpStatus.OK);
     }
 }
 
