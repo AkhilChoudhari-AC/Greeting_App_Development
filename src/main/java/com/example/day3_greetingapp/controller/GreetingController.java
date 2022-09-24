@@ -58,5 +58,10 @@ public class GreetingController {
     public ResponseEntity<Greeting> saveGreeting(@RequestBody Greeting greeting){
         return new ResponseEntity<Greeting>(greetingService.saveMessage(greeting),HttpStatus.OK);
     }
+    //UC5
+    @GetMapping("/findGreeting")
+    public ResponseEntity<String> findGreeting(@RequestParam Integer id){
+        return new ResponseEntity<String>(greetingService.getData(id),HttpStatus.OK);
+    }
 }
 

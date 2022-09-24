@@ -26,4 +26,8 @@ public class GreetingService {
         repo.save(newGreeting);
         return newGreeting;
     }
+    public String getData(Integer id) {
+        Greeting newGreeting=repo.getById(id);
+        return newGreeting.getContent();
+    }
 }
