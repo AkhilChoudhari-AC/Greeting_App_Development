@@ -8,13 +8,14 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
 
 
 @RestController
 public class GreetingController {
 
-//   It is final, it will not change # "hello"
+///  It is final, it will not change # "hello"
     public static final String template = "Hello %s!";
 
     //Automatically creating the counting
@@ -50,8 +51,8 @@ public class GreetingController {
         return new ResponseEntity<String>(greetingService.getGreetingMessage(fName,lName),HttpStatus.OK);
     }
     @PostMapping("/post")
-    public ResponseEntity<String> getGreeting(@RequestBody User user){
-        return new ResponseEntity<String>(greetingService.postMessage(user.getfName(),user.getlName()),HttpStatus.OK);
+    public ResponseEntity<String> getGreeting(@RequestBody User user) {
+        return new ResponseEntity<String>(greetingService.postMessage(user), HttpStatus.OK);
     }
    //UC4
     @PostMapping("/saveGreeting")
@@ -59,9 +60,15 @@ public class GreetingController {
         return new ResponseEntity<Greeting>(greetingService.saveMessage(greeting),HttpStatus.OK);
     }
     //UC5
-    @GetMapping("/findGreeting")
-    public ResponseEntity<String> findGreeting(@RequestParam Integer id){
-        return new ResponseEntity<String>(greetingService.getData(id),HttpStatus.OK);
+    @GetMapping("/findGreetingById")
+    public ResponseEntity<String> findGreetingById(@RequestParam Integer id){
+        return new ResponseEntity<String>(greetingService.getDataById(id),HttpStatus.OK);
     }
+    //UC6
+    @GetMapping("/findAllGreeting")
+    public ResponseEntity<List<Greeting>> findAllGreeting(){
+        return new ResponseEntity<List<Greeting>>(greetingService.getAllData(),HttpStatus.OK);
+    }
+
 }
 

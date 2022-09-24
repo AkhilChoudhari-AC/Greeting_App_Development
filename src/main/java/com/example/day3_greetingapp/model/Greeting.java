@@ -1,8 +1,6 @@
 package com.example.day3_greetingapp.model;
 
 
-import org.springframework.boot.autoconfigure.domain.EntityScan;
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -27,6 +25,12 @@ public class Greeting {
         super();
         this.id = id;
         this.content = content;
+    }
+    public Integer getId() {
+        return id;
+    }
+    public void setId(Integer id) {
+        this.id = id;
     }
     public String getContent() {
         return content;
